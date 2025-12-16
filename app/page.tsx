@@ -20,8 +20,6 @@ import {
   Phone,
   Mail,
   Calendar,
-  Clock,
-  MessageSquare,
 } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
@@ -437,11 +435,11 @@ export default function DashboardPage() {
   ]
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex h-screen bg-[#0a0e1a]">
       {/* Left Sidebar */}
-      <aside className="w-60 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 border-r border-sidebar-border flex flex-col shadow-xl">
-        <div className="h-16 flex items-center px-6 border-b border-sidebar-border/50">
-          <span className="text-sidebar-foreground font-bold text-xl tracking-tight">Zero2One</span>
+      <aside className="w-60 bg-[#0a0e1a] border-r border-white/10 flex flex-col">
+        <div className="h-16 flex items-center px-6 border-b border-white/10">
+          <span className="text-white font-bold text-xl tracking-tight">Zero2One</span>
         </div>
 
         {/* Navigation */}
@@ -456,8 +454,8 @@ export default function DashboardPage() {
                 className={cn(
                   "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200",
                   isActive
-                    ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20"
-                    : "text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-slate-800/50 hover:translate-x-0.5",
+                    ? "bg-gradient-to-r from-[#7FFF7F] to-[#00CED1] text-[#0a0e1a] shadow-lg"
+                    : "text-white/70 hover:text-[#7FFF7F] hover:bg-white/5",
                 )}
               >
                 <Icon className="w-5 h-5" />
@@ -468,15 +466,17 @@ export default function DashboardPage() {
         </nav>
 
         {/* User Profile */}
-        <div className="p-4 border-t border-sidebar-border/50">
+        <div className="p-4 border-t border-white/10">
           <div className="flex items-center gap-3">
-            <Avatar className="w-9 h-9 ring-2 ring-slate-700">
+            <Avatar className="w-9 h-9 ring-2 ring-[#7FFF7F]">
               <AvatarImage src="/placeholder.svg?height=36&width=36" />
-              <AvatarFallback className="bg-blue-600 text-white">JD</AvatarFallback>
+              <AvatarFallback className="bg-gradient-to-r from-[#7FFF7F] to-[#00CED1] text-[#0a0e1a]">
+                JD
+              </AvatarFallback>
             </Avatar>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-sidebar-foreground truncate">John Doe</p>
-              <p className="text-xs text-sidebar-foreground/60 truncate">john@zero2one.app</p>
+              <p className="text-sm font-medium text-white truncate">John Doe</p>
+              <p className="text-xs text-white/50 truncate">john@zero2one.app</p>
             </div>
           </div>
         </div>
@@ -485,39 +485,50 @@ export default function DashboardPage() {
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <header className="h-16 border-b border-border bg-card flex items-center justify-between px-8 shadow-sm">
-          <h1 className="text-2xl font-semibold text-foreground">{activePage}</h1>
+        <header className="h-16 border-b border-white/10 bg-[#1a1f2e] flex items-center justify-between px-8">
+          <h1 className="text-2xl font-semibold text-white">{activePage}</h1>
 
           {/* Time Period Selector */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="min-w-32 justify-between gap-2 bg-transparent hover:bg-accent">
+              <Button
+                variant="outline"
+                className="min-w-32 justify-between gap-2 bg-transparent border-white/10 text-white hover:bg-white/5 hover:border-[#7FFF7F]/30"
+              >
                 <span>{timePeriod}</span>
                 <ChevronDown className="w-4 h-4 opacity-50" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-32">
-              <DropdownMenuItem onClick={() => setTimePeriod("Hour")}>Hour</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTimePeriod("Day")}>Day</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTimePeriod("Week")}>Week</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTimePeriod("Month")}>Month</DropdownMenuItem>
+            <DropdownMenuContent align="end" className="w-32 bg-[#1a1f2e] border-white/10">
+              <DropdownMenuItem onClick={() => setTimePeriod("Hour")} className="text-white hover:bg-white/5">
+                Hour
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTimePeriod("Day")} className="text-white hover:bg-white/5">
+                Day
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTimePeriod("Week")} className="text-white hover:bg-white/5">
+                Week
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTimePeriod("Month")} className="text-white hover:bg-white/5">
+                Month
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </header>
 
         {/* Content Area */}
-        <div className="flex-1 overflow-auto p-8 bg-slate-50">
+        <div className="flex-1 overflow-auto p-8 bg-[#1a1f2e]">
           {activePage === "Finance" && (
             <div className="max-w-7xl mx-auto space-y-6">
               {/* Real-time ROAS Card */}
-              <Card className="border-0 shadow-lg">
+              <Card className="bg-white/[0.03] border border-white/10 rounded-2xl shadow-none">
                 <CardHeader className="pb-4">
                   <div className="flex items-start justify-between">
                     <div>
-                      <CardTitle className="text-lg text-slate-600 font-medium">Real-time ROAS</CardTitle>
+                      <CardTitle className="text-lg text-white/70 font-medium">Real-time ROAS</CardTitle>
                       <div className="flex items-baseline gap-3 mt-2">
-                        <span className="text-5xl font-bold text-slate-900">3.2x</span>
-                        <div className="flex items-center gap-1 text-green-600 font-semibold">
+                        <span className="text-5xl font-bold text-white">3.2x</span>
+                        <div className="flex items-center gap-1 text-[#7FFF7F] font-semibold">
                           <ArrowUpRight className="w-5 h-5" />
                           <span>+8.4%</span>
                         </div>
@@ -526,16 +537,36 @@ export default function DashboardPage() {
 
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button variant="outline" className="min-w-32 justify-between gap-2 bg-transparent">
+                        <Button
+                          variant="outline"
+                          className="min-w-32 justify-between gap-2 bg-transparent border-white/10 text-white hover:bg-white/5"
+                        >
                           <span className="text-sm">{roasView}</span>
                           <ChevronDown className="w-4 h-4 opacity-50" />
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end" className="w-40">
-                        <DropdownMenuItem onClick={() => setRoasView("By Hour")}>By Hour</DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => setRoasView("By Day")}>By Day</DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => setRoasView("By Category")}>By Category</DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => setRoasView("By Channel")}>By Channel</DropdownMenuItem>
+                      <DropdownMenuContent align="end" className="w-40 bg-[#1a1f2e] border-white/10">
+                        <DropdownMenuItem
+                          onClick={() => setRoasView("By Hour")}
+                          className="text-white hover:bg-white/5"
+                        >
+                          By Hour
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setRoasView("By Day")} className="text-white hover:bg-white/5">
+                          By Day
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          onClick={() => setRoasView("By Category")}
+                          className="text-white hover:bg-white/5"
+                        >
+                          By Category
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          onClick={() => setRoasView("By Channel")}
+                          className="text-white hover:bg-white/5"
+                        >
+                          By Channel
+                        </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </div>
@@ -551,7 +582,7 @@ export default function DashboardPage() {
                             <div className="w-full relative">
                               {index < roasData.length - 1 && (
                                 <div
-                                  className="absolute top-0 left-full w-full h-px bg-blue-500 origin-left"
+                                  className="absolute top-0 left-full w-full h-0.5 bg-gradient-to-r from-[#7FFF7F] to-[#00CED1] origin-left"
                                   style={{
                                     transform: `rotate(${Math.atan2(
                                       ((roasData[index + 1].value - item.value) / maxRoas) * 160,
@@ -562,16 +593,16 @@ export default function DashboardPage() {
                                 />
                               )}
                               <div
-                                className="w-full bg-gradient-to-t from-blue-500 to-blue-400 rounded-t transition-all hover:from-blue-600 hover:to-blue-500 relative group"
+                                className="w-full bg-gradient-to-t from-[#7FFF7F] to-[#00CED1] rounded-t transition-all hover:opacity-80 relative group"
                                 style={{ height: `${heightPercent}%` }}
                               >
-                                <div className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                                <div className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-[#0a0e1a] text-white text-xs px-2 py-1 rounded whitespace-nowrap border border-white/10">
                                   {item.value}x
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <span className="text-xs text-slate-500 font-medium">{item.time}</span>
+                          <span className="text-xs text-white/50 font-medium">{item.time}</span>
                         </div>
                       )
                     })}
@@ -581,43 +612,48 @@ export default function DashboardPage() {
 
               {/* Revenue Drivers Grid */}
               <div>
-                <h2 className="text-lg font-semibold text-slate-900 mb-4">Revenue Drivers</h2>
+                <h2 className="text-lg font-semibold text-white mb-4">Revenue Drivers</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                   {revenueDrivers.map((driver, index) => (
                     <Card
                       key={index}
-                      className="border-0 shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
+                      className="bg-white/[0.03] border border-white/10 rounded-2xl shadow-none transition-all duration-300 hover:border-[#7FFF7F]/30 hover:-translate-y-1"
                     >
-                      <CardContent className="p-5">
-                        <div className="flex items-start justify-between mb-3">
-                          <span className="text-sm text-slate-600 font-medium">{driver.label}</span>
-                          {driver.trend === "up" ? (
-                            <ArrowUpRight className="w-4 h-4 text-green-600" />
-                          ) : (
-                            <ArrowDownRight className="w-4 h-4 text-red-600" />
-                          )}
-                        </div>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-medium text-white/50">{driver.label}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
                         <div className="space-y-2">
-                          <p className="text-2xl font-bold text-slate-900">{driver.value}</p>
+                          <p className="text-2xl font-bold text-white">{driver.value}</p>
                           <div className="flex items-center justify-between">
-                            <span
+                            <div
                               className={cn(
-                                "text-xs font-semibold",
-                                driver.trend === "up" ? "text-green-600" : "text-red-600",
+                                "flex items-center gap-1 text-sm font-semibold",
+                                driver.trend === "up" ? "text-[#7FFF7F]" : "text-red-500",
                               )}
                             >
-                              {driver.change}
-                            </span>
-                            {/* Mini Sparkline */}
-                            <div className="flex items-end gap-0.5 h-6">
-                              {[0.6, 0.8, 0.7, 0.9, 0.85, 1.0].map((height, i) => (
-                                <div
-                                  key={i}
-                                  className={cn("w-1 rounded-t", driver.trend === "up" ? "bg-green-500" : "bg-red-500")}
-                                  style={{ height: `${height * 100}%` }}
-                                />
-                              ))}
+                              {driver.trend === "up" ? (
+                                <ArrowUpRight className="w-4 h-4" />
+                              ) : (
+                                <ArrowDownRight className="w-4 h-4" />
+                              )}
+                              <span>{driver.change}</span>
                             </div>
+                            {/* Mini Sparkline */}
+                            <svg className="w-16 h-8" viewBox="0 0 64 32">
+                              <polyline
+                                points="0,20 16,15 32,18 48,10 64,12"
+                                fill="none"
+                                stroke={driver.trend === "up" ? "#7FFF7F" : "#ef4444"}
+                                strokeWidth="2"
+                                opacity="0.5"
+                              />
+                              <polyline
+                                points="0,20 16,15 32,18 48,10 64,12 64,32 0,32"
+                                fill={driver.trend === "up" ? "#7FFF7F" : "#ef4444"}
+                                opacity="0.1"
+                              />
+                            </svg>
                           </div>
                         </div>
                       </CardContent>
@@ -626,178 +662,95 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              {/* SKU Level Profit Table */}
-              <div>
-                <h2 className="text-lg font-semibold text-slate-900 mb-4">SKU Level Profit</h2>
-                <Card className="border-0 shadow-md overflow-hidden">
+              {/* SKU-level Profit Table */}
+              <Card className="bg-white/[0.03] border border-white/10 rounded-2xl shadow-none">
+                <CardHeader className="border-b border-white/10">
+                  <CardTitle className="text-white">SKU-level Profit Analysis</CardTitle>
+                </CardHeader>
+                <CardContent className="p-0">
                   <div className="overflow-x-auto">
                     <table className="w-full">
-                      <thead>
-                        <tr className="border-b border-slate-200 bg-slate-50">
-                          <th className="text-left p-4 text-sm font-semibold text-slate-700">
-                            <button
-                              onClick={() => handleSort("sku")}
-                              className="flex items-center gap-1 hover:text-slate-900"
-                            >
-                              SKU
-                              <ChevronDown
-                                className={cn(
-                                  "w-4 h-4 transition-transform",
-                                  sortConfig?.key === "sku" && sortConfig.direction === "desc" && "rotate-180",
-                                )}
-                              />
-                            </button>
+                      <thead className="bg-white/[0.02]">
+                        <tr className="border-b border-white/10">
+                          <th
+                            className="text-left py-3 px-6 text-sm font-medium text-white/70 cursor-pointer hover:text-white"
+                            onClick={() => handleSort("sku")}
+                          >
+                            SKU
                           </th>
-                          <th className="text-left p-4 text-sm font-semibold text-slate-700">
-                            <button
-                              onClick={() => handleSort("name")}
-                              className="flex items-center gap-1 hover:text-slate-900"
-                            >
-                              Product Name
-                              <ChevronDown
-                                className={cn(
-                                  "w-4 h-4 transition-transform",
-                                  sortConfig?.key === "name" && sortConfig.direction === "desc" && "rotate-180",
-                                )}
-                              />
-                            </button>
+                          <th
+                            className="text-left py-3 px-6 text-sm font-medium text-white/70 cursor-pointer hover:text-white"
+                            onClick={() => handleSort("name")}
+                          >
+                            Name
                           </th>
-                          <th className="text-right p-4 text-sm font-semibold text-slate-700">
-                            <button
-                              onClick={() => handleSort("revenue")}
-                              className="flex items-center gap-1 hover:text-slate-900 ml-auto"
-                            >
-                              Revenue
-                              <ChevronDown
-                                className={cn(
-                                  "w-4 h-4 transition-transform",
-                                  sortConfig?.key === "revenue" && sortConfig.direction === "desc" && "rotate-180",
-                                )}
-                              />
-                            </button>
+                          <th
+                            className="text-right py-3 px-6 text-sm font-medium text-white/70 cursor-pointer hover:text-white"
+                            onClick={() => handleSort("revenue")}
+                          >
+                            Revenue
                           </th>
-                          <th className="text-right p-4 text-sm font-semibold text-slate-700">
-                            <button
-                              onClick={() => handleSort("cogs")}
-                              className="flex items-center gap-1 hover:text-slate-900 ml-auto"
-                            >
-                              COGS
-                              <ChevronDown
-                                className={cn(
-                                  "w-4 h-4 transition-transform",
-                                  sortConfig?.key === "cogs" && sortConfig.direction === "desc" && "rotate-180",
-                                )}
-                              />
-                            </button>
+                          <th
+                            className="text-right py-3 px-6 text-sm font-medium text-white/70 cursor-pointer hover:text-white"
+                            onClick={() => handleSort("cogs")}
+                          >
+                            COGS
                           </th>
-                          <th className="text-right p-4 text-sm font-semibold text-slate-700">
-                            <button
-                              onClick={() => handleSort("grossMargin")}
-                              className="flex items-center gap-1 hover:text-slate-900 ml-auto"
-                            >
-                              Gross Margin
-                              <ChevronDown
-                                className={cn(
-                                  "w-4 h-4 transition-transform",
-                                  sortConfig?.key === "grossMargin" && sortConfig.direction === "desc" && "rotate-180",
-                                )}
-                              />
-                            </button>
+                          <th
+                            className="text-right py-3 px-6 text-sm font-medium text-white/70 cursor-pointer hover:text-white"
+                            onClick={() => handleSort("grossMargin")}
+                          >
+                            Gross Margin
                           </th>
-                          <th className="text-right p-4 text-sm font-semibold text-slate-700">
-                            <button
-                              onClick={() => handleSort("adSpend")}
-                              className="flex items-center gap-1 hover:text-slate-900 ml-auto"
-                            >
-                              Ad Spend
-                              <ChevronDown
-                                className={cn(
-                                  "w-4 h-4 transition-transform",
-                                  sortConfig?.key === "adSpend" && sortConfig.direction === "desc" && "rotate-180",
-                                )}
-                              />
-                            </button>
+                          <th
+                            className="text-right py-3 px-6 text-sm font-medium text-white/70 cursor-pointer hover:text-white"
+                            onClick={() => handleSort("adSpend")}
+                          >
+                            Ad Spend
                           </th>
-                          <th className="text-right p-4 text-sm font-semibold text-slate-700">
-                            <button
-                              onClick={() => handleSort("netProfit")}
-                              className="flex items-center gap-1 hover:text-slate-900 ml-auto"
-                            >
-                              Net Profit
-                              <ChevronDown
-                                className={cn(
-                                  "w-4 h-4 transition-transform",
-                                  sortConfig?.key === "netProfit" && sortConfig.direction === "desc" && "rotate-180",
-                                )}
-                              />
-                            </button>
+                          <th
+                            className="text-right py-3 px-6 text-sm font-medium text-white/70 cursor-pointer hover:text-white"
+                            onClick={() => handleSort("netProfit")}
+                          >
+                            Net Profit
                           </th>
-                          <th className="text-right p-4 text-sm font-semibold text-slate-700">
-                            <button
-                              onClick={() => handleSort("profitMargin")}
-                              className="flex items-center gap-1 hover:text-slate-900 ml-auto"
-                            >
-                              Profit Margin %
-                              <ChevronDown
-                                className={cn(
-                                  "w-4 h-4 transition-transform",
-                                  sortConfig?.key === "profitMargin" && sortConfig.direction === "desc" && "rotate-180",
-                                )}
-                              />
-                            </button>
+                          <th
+                            className="text-right py-3 px-6 text-sm font-medium text-white/70 cursor-pointer hover:text-white"
+                            onClick={() => handleSort("profitMargin")}
+                          >
+                            Margin %
                           </th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody className="font-mono">
                         {getSortedSkuData().map((item, index) => (
-                          <tr key={index} className="border-b border-slate-100 hover:bg-slate-50 transition-colors">
-                            <td className="p-4">
-                              <span className="text-sm font-mono text-slate-600">{item.sku}</span>
+                          <tr key={index} className="border-b border-white/5 hover:bg-white/[0.05] transition-colors">
+                            <td className="py-4 px-6 text-sm font-medium text-white">{item.sku}</td>
+                            <td className="py-4 px-6 text-sm text-white/70">{item.name}</td>
+                            <td className="py-4 px-6 text-sm text-right text-white">
+                              ${item.revenue.toLocaleString()}
                             </td>
-                            <td className="p-4">
-                              <span className="text-sm font-medium text-slate-900">{item.name}</span>
+                            <td className="py-4 px-6 text-sm text-right text-white/70">
+                              ${item.cogs.toLocaleString()}
                             </td>
-                            <td className="p-4 text-right">
-                              <span className="text-sm font-mono text-slate-900 tabular-nums">
-                                ${item.revenue.toLocaleString()}
-                              </span>
+                            <td className="py-4 px-6 text-sm text-right text-white">
+                              ${item.grossMargin.toLocaleString()}
                             </td>
-                            <td className="p-4 text-right">
-                              <span className="text-sm font-mono text-slate-900 tabular-nums">
-                                ${item.cogs.toLocaleString()}
-                              </span>
+                            <td className="py-4 px-6 text-sm text-right text-white/70">
+                              ${item.adSpend.toLocaleString()}
                             </td>
-                            <td className="p-4 text-right">
-                              <span className="text-sm font-mono text-slate-900 tabular-nums">
-                                ${item.grossMargin.toLocaleString()}
-                              </span>
+                            <td className="py-4 px-6 text-sm text-right font-semibold text-white">
+                              ${item.netProfit.toLocaleString()}
                             </td>
-                            <td className="p-4 text-right">
-                              <span className="text-sm font-mono text-slate-900 tabular-nums">
-                                ${item.adSpend.toLocaleString()}
-                              </span>
-                            </td>
-                            <td className="p-4 text-right">
+                            <td className="py-4 px-6 text-sm text-right">
                               <span
                                 className={cn(
-                                  "text-sm font-mono font-semibold tabular-nums",
-                                  item.netProfit >= 0 ? "text-green-600" : "text-red-600",
-                                )}
-                              >
-                                ${item.netProfit.toLocaleString()}
-                              </span>
-                            </td>
-                            <td className="p-4 text-right">
-                              <span
-                                className={cn(
-                                  "inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold tabular-nums",
+                                  "inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold",
                                   item.profitMargin >= 50
-                                    ? "bg-green-100 text-green-700"
+                                    ? "bg-[#7FFF7F]/10 text-[#7FFF7F] border border-[#7FFF7F]/20"
                                     : item.profitMargin >= 30
-                                      ? "bg-blue-100 text-blue-700"
-                                      : item.profitMargin >= 0
-                                        ? "bg-yellow-100 text-yellow-700"
-                                        : "bg-red-100 text-red-700",
+                                      ? "bg-[#00CED1]/10 text-[#00CED1] border border-[#00CED1]/20"
+                                      : "bg-white/5 text-white/70 border border-white/10",
                                 )}
                               >
                                 {item.profitMargin.toFixed(1)}%
@@ -808,22 +761,22 @@ export default function DashboardPage() {
                       </tbody>
                     </table>
                   </div>
-                </Card>
-              </div>
+                </CardContent>
+              </Card>
             </div>
           )}
 
           {activePage === "Accounting" && (
             <div className="max-w-7xl mx-auto space-y-6">
-              {/* Tab Bar */}
-              <div className="flex gap-2 border-b border-slate-200">
+              {/* Tabs */}
+              <div className="flex gap-2 border-b border-white/10">
                 <button
                   onClick={() => setActiveTab("balance-sheet")}
                   className={cn(
-                    "px-6 py-3 text-sm font-semibold border-b-2 transition-all",
+                    "px-4 py-2 text-sm font-medium border-b-2 transition-colors",
                     activeTab === "balance-sheet"
-                      ? "border-blue-600 text-blue-600"
-                      : "border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300",
+                      ? "border-[#7FFF7F] text-white"
+                      : "border-transparent text-white/50 hover:text-white/70",
                   )}
                 >
                   Balance Sheet
@@ -831,397 +784,402 @@ export default function DashboardPage() {
                 <button
                   onClick={() => setActiveTab("income-statement")}
                   className={cn(
-                    "px-6 py-3 text-sm font-semibold border-b-2 transition-all",
+                    "px-4 py-2 text-sm font-medium border-b-2 transition-colors",
                     activeTab === "income-statement"
-                      ? "border-blue-600 text-blue-600"
-                      : "border-transparent text-slate-600 hover:text-slate-900 hover:border-slate-300",
+                      ? "border-[#7FFF7F] text-white"
+                      : "border-transparent text-white/50 hover:text-white/70",
                   )}
                 >
                   Income Statement
                 </button>
               </div>
 
-              {/* Balance Sheet Tab */}
               {activeTab === "balance-sheet" && (
-                <Card className="border-0 shadow-md">
-                  <CardHeader>
-                    <CardTitle className="text-xl">Balance Sheet</CardTitle>
-                    <p className="text-sm text-muted-foreground">As of December 31, 2024</p>
+                <Card className="bg-white/[0.03] border border-white/10 rounded-2xl shadow-none">
+                  <CardHeader className="border-b border-white/10">
+                    <CardTitle className="text-white">Balance Sheet</CardTitle>
+                    <p className="text-sm text-white/50 mt-1">As of December 31, 2024</p>
                   </CardHeader>
-                  <CardContent className="space-y-6">
-                    {/* Assets Section */}
-                    <div className="border border-slate-200 rounded-lg overflow-hidden">
-                      <button
-                        onClick={() => toggleSection("assets")}
-                        className="w-full flex items-center justify-between px-6 py-4 bg-slate-50 hover:bg-slate-100 transition-colors"
-                      >
-                        <h3 className="font-bold text-lg text-slate-900">ASSETS</h3>
-                        <ChevronRight
-                          className={cn(
-                            "w-5 h-5 transition-transform text-slate-600",
-                            !collapsedSections["assets"] && "rotate-90",
-                          )}
-                        />
-                      </button>
+                  <CardContent className="p-6">
+                    <div className="space-y-8 font-mono">
+                      {/* Assets */}
+                      <div>
+                        <button
+                          onClick={() => toggleSection("assets")}
+                          className="flex items-center justify-between w-full text-left mb-3 hover:text-[#7FFF7F] transition-colors"
+                        >
+                          <h3 className="text-lg font-bold text-white">ASSETS</h3>
+                          <ChevronRight
+                            className={cn(
+                              "w-5 h-5 transition-transform text-white",
+                              !collapsedSections.assets && "rotate-90",
+                            )}
+                          />
+                        </button>
 
-                      {!collapsedSections["assets"] && (
-                        <div className="px-6 py-4 space-y-6">
-                          {/* Current Assets */}
-                          <div>
-                            <h4 className="font-semibold text-slate-700 mb-3">Current Assets</h4>
-                            <div className="space-y-2">
-                              {balanceSheetData.assets.current.map((item) => (
-                                <div key={item.name} className="flex justify-between py-2 border-b border-slate-100">
-                                  <span className="text-slate-600 pl-4">{item.name}</span>
-                                  <span className="font-mono text-slate-900 tabular-nums">
-                                    {formatCurrency(item.amount)}
-                                  </span>
+                        {!collapsedSections.assets && (
+                          <div className="space-y-4 pl-4">
+                            {/* Current Assets */}
+                            <div>
+                              <p className="text-sm font-semibold text-white/70 mb-2">Current Assets</p>
+                              <div className="space-y-1.5 pl-4">
+                                {balanceSheetData.assets.current.map((item, index) => (
+                                  <div
+                                    key={index}
+                                    className="flex justify-between text-sm py-1 hover:bg-white/[0.02] px-2 rounded"
+                                  >
+                                    <span className="text-white/70">{item.name}</span>
+                                    <span className="text-white">{formatCurrency(item.amount)}</span>
+                                  </div>
+                                ))}
+                                <div className="flex justify-between text-sm font-semibold border-t border-white/10 pt-2 mt-2 px-2">
+                                  <span className="text-white/90">Total Current Assets</span>
+                                  <span className="text-white">{formatCurrency(currentAssets)}</span>
                                 </div>
-                              ))}
-                              <div className="flex justify-between py-2 font-semibold">
-                                <span className="text-slate-700 pl-4">Total Current Assets</span>
-                                <span className="font-mono text-slate-900 tabular-nums">
-                                  {formatCurrency(currentAssets)}
-                                </span>
                               </div>
                             </div>
-                          </div>
 
-                          {/* Fixed Assets */}
-                          <div>
-                            <h4 className="font-semibold text-slate-700 mb-3">Fixed Assets</h4>
-                            <div className="space-y-2">
-                              {balanceSheetData.assets.fixed.map((item) => (
-                                <div key={item.name} className="flex justify-between py-2 border-b border-slate-100">
-                                  <span className="text-slate-600 pl-4">{item.name}</span>
-                                  <span className="font-mono text-slate-900 tabular-nums">
-                                    {formatCurrency(item.amount)}
-                                  </span>
+                            {/* Fixed Assets */}
+                            <div>
+                              <p className="text-sm font-semibold text-white/70 mb-2">Fixed Assets</p>
+                              <div className="space-y-1.5 pl-4">
+                                {balanceSheetData.assets.fixed.map((item, index) => (
+                                  <div
+                                    key={index}
+                                    className="flex justify-between text-sm py-1 hover:bg-white/[0.02] px-2 rounded"
+                                  >
+                                    <span className="text-white/70">{item.name}</span>
+                                    <span className={cn("text-white", item.amount < 0 && "text-red-500")}>
+                                      {formatCurrency(item.amount)}
+                                    </span>
+                                  </div>
+                                ))}
+                                <div className="flex justify-between text-sm font-semibold border-t border-white/10 pt-2 mt-2 px-2">
+                                  <span className="text-white/90">Total Fixed Assets</span>
+                                  <span className="text-white">{formatCurrency(fixedAssets)}</span>
                                 </div>
-                              ))}
-                              <div className="flex justify-between py-2 font-semibold">
-                                <span className="text-slate-700 pl-4">Total Fixed Assets</span>
-                                <span className="font-mono text-slate-900 tabular-nums">
-                                  {formatCurrency(fixedAssets)}
-                                </span>
                               </div>
                             </div>
+
+                            <div className="flex justify-between text-base font-bold border-t-2 border-white/20 pt-3 mt-3 bg-white/[0.02] px-2 py-2 rounded">
+                              <span className="text-white">TOTAL ASSETS</span>
+                              <span className="text-white">{formatCurrency(totalAssets)}</span>
+                            </div>
                           </div>
+                        )}
+                      </div>
 
-                          {/* Total Assets */}
-                          <div className="flex justify-between py-3 border-t-2 border-slate-300 font-bold text-lg">
-                            <span className="text-slate-900">TOTAL ASSETS</span>
-                            <span className="font-mono text-slate-900 tabular-nums">{formatCurrency(totalAssets)}</span>
-                          </div>
-                        </div>
-                      )}
-                    </div>
+                      {/* Liabilities */}
+                      <div>
+                        <button
+                          onClick={() => toggleSection("liabilities")}
+                          className="flex items-center justify-between w-full text-left mb-3 hover:text-[#7FFF7F] transition-colors"
+                        >
+                          <h3 className="text-lg font-bold text-white">LIABILITIES</h3>
+                          <ChevronRight
+                            className={cn(
+                              "w-5 h-5 transition-transform text-white",
+                              !collapsedSections.liabilities && "rotate-90",
+                            )}
+                          />
+                        </button>
 
-                    {/* Liabilities Section */}
-                    <div className="border border-slate-200 rounded-lg overflow-hidden">
-                      <button
-                        onClick={() => toggleSection("liabilities")}
-                        className="w-full flex items-center justify-between px-6 py-4 bg-slate-50 hover:bg-slate-100 transition-colors"
-                      >
-                        <h3 className="font-bold text-lg text-slate-900">LIABILITIES</h3>
-                        <ChevronRight
-                          className={cn(
-                            "w-5 h-5 transition-transform text-slate-600",
-                            !collapsedSections["liabilities"] && "rotate-90",
-                          )}
-                        />
-                      </button>
-
-                      {!collapsedSections["liabilities"] && (
-                        <div className="px-6 py-4 space-y-6">
-                          {/* Current Liabilities */}
-                          <div>
-                            <h4 className="font-semibold text-slate-700 mb-3">Current Liabilities</h4>
-                            <div className="space-y-2">
-                              {balanceSheetData.liabilities.current.map((item) => (
-                                <div key={item.name} className="flex justify-between py-2 border-b border-slate-100">
-                                  <span className="text-slate-600 pl-4">{item.name}</span>
-                                  <span className="font-mono text-slate-900 tabular-nums">
-                                    {formatCurrency(item.amount)}
-                                  </span>
+                        {!collapsedSections.liabilities && (
+                          <div className="space-y-4 pl-4">
+                            {/* Current Liabilities */}
+                            <div>
+                              <p className="text-sm font-semibold text-white/70 mb-2">Current Liabilities</p>
+                              <div className="space-y-1.5 pl-4">
+                                {balanceSheetData.liabilities.current.map((item, index) => (
+                                  <div
+                                    key={index}
+                                    className="flex justify-between text-sm py-1 hover:bg-white/[0.02] px-2 rounded"
+                                  >
+                                    <span className="text-white/70">{item.name}</span>
+                                    <span className="text-white">{formatCurrency(item.amount)}</span>
+                                  </div>
+                                ))}
+                                <div className="flex justify-between text-sm font-semibold border-t border-white/10 pt-2 mt-2 px-2">
+                                  <span className="text-white/90">Total Current Liabilities</span>
+                                  <span className="text-white">{formatCurrency(currentLiabilities)}</span>
                                 </div>
-                              ))}
-                              <div className="flex justify-between py-2 font-semibold">
-                                <span className="text-slate-700 pl-4">Total Current Liabilities</span>
-                                <span className="font-mono text-slate-900 tabular-nums">
-                                  {formatCurrency(currentLiabilities)}
-                                </span>
                               </div>
                             </div>
-                          </div>
 
-                          {/* Long-term Liabilities */}
-                          <div>
-                            <h4 className="font-semibold text-slate-700 mb-3">Long-term Liabilities</h4>
-                            <div className="space-y-2">
-                              {balanceSheetData.liabilities.longTerm.map((item) => (
-                                <div key={item.name} className="flex justify-between py-2 border-b border-slate-100">
-                                  <span className="text-slate-600 pl-4">{item.name}</span>
-                                  <span className="font-mono text-slate-900 tabular-nums">
-                                    {formatCurrency(item.amount)}
-                                  </span>
+                            {/* Long-term Liabilities */}
+                            <div>
+                              <p className="text-sm font-semibold text-white/70 mb-2">Long-term Liabilities</p>
+                              <div className="space-y-1.5 pl-4">
+                                {balanceSheetData.liabilities.longTerm.map((item, index) => (
+                                  <div
+                                    key={index}
+                                    className="flex justify-between text-sm py-1 hover:bg-white/[0.02] px-2 rounded"
+                                  >
+                                    <span className="text-white/70">{item.name}</span>
+                                    <span className="text-white">{formatCurrency(item.amount)}</span>
+                                  </div>
+                                ))}
+                                <div className="flex justify-between text-sm font-semibold border-t border-white/10 pt-2 mt-2 px-2">
+                                  <span className="text-white/90">Total Long-term Liabilities</span>
+                                  <span className="text-white">{formatCurrency(longTermLiabilities)}</span>
                                 </div>
-                              ))}
-                              <div className="flex justify-between py-2 font-semibold">
-                                <span className="text-slate-700 pl-4">Total Long-term Liabilities</span>
-                                <span className="font-mono text-slate-900 tabular-nums">
-                                  {formatCurrency(longTermLiabilities)}
-                                </span>
                               </div>
                             </div>
-                          </div>
 
-                          {/* Total Liabilities */}
-                          <div className="flex justify-between py-3 border-t-2 border-slate-300 font-bold text-lg">
-                            <span className="text-slate-900">TOTAL LIABILITIES</span>
-                            <span className="font-mono text-slate-900 tabular-nums">
-                              {formatCurrency(totalLiabilities)}
-                            </span>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Equity Section */}
-                    <div className="border border-slate-200 rounded-lg overflow-hidden">
-                      <button
-                        onClick={() => toggleSection("equity")}
-                        className="w-full flex items-center justify-between px-6 py-4 bg-slate-50 hover:bg-slate-100 transition-colors"
-                      >
-                        <h3 className="font-bold text-lg text-slate-900">EQUITY</h3>
-                        <ChevronRight
-                          className={cn(
-                            "w-5 h-5 transition-transform text-slate-600",
-                            !collapsedSections["equity"] && "rotate-90",
-                          )}
-                        />
-                      </button>
-
-                      {!collapsedSections["equity"] && (
-                        <div className="px-6 py-4 space-y-2">
-                          {balanceSheetData.equity.map((item) => (
-                            <div key={item.name} className="flex justify-between py-2 border-b border-slate-100">
-                              <span className="text-slate-600 pl-4">{item.name}</span>
-                              <span className="font-mono text-slate-900 tabular-nums">
-                                {formatCurrency(item.amount)}
-                              </span>
+                            <div className="flex justify-between text-base font-bold border-t-2 border-white/20 pt-3 mt-3 bg-white/[0.02] px-2 py-2 rounded">
+                              <span className="text-white">TOTAL LIABILITIES</span>
+                              <span className="text-white">{formatCurrency(totalLiabilities)}</span>
                             </div>
-                          ))}
-                          <div className="flex justify-between py-3 border-t-2 border-slate-300 font-bold text-lg">
-                            <span className="text-slate-900">TOTAL EQUITY</span>
-                            <span className="font-mono text-slate-900 tabular-nums">{formatCurrency(totalEquity)}</span>
                           </div>
-                        </div>
-                      )}
-                    </div>
+                        )}
+                      </div>
 
-                    {/* Total Liabilities & Equity */}
-                    <div className="flex justify-between py-4 px-6 bg-blue-50 rounded-lg border-2 border-blue-200 font-bold text-lg">
-                      <span className="text-slate-900">TOTAL LIABILITIES & EQUITY</span>
-                      <span className="font-mono text-slate-900 tabular-nums">
-                        {formatCurrency(totalLiabilities + totalEquity)}
-                      </span>
+                      {/* Equity */}
+                      <div>
+                        <button
+                          onClick={() => toggleSection("equity")}
+                          className="flex items-center justify-between w-full text-left mb-3 hover:text-[#7FFF7F] transition-colors"
+                        >
+                          <h3 className="text-lg font-bold text-white">EQUITY</h3>
+                          <ChevronRight
+                            className={cn(
+                              "w-5 h-5 transition-transform text-white",
+                              !collapsedSections.equity && "rotate-90",
+                            )}
+                          />
+                        </button>
+
+                        {!collapsedSections.equity && (
+                          <div className="space-y-2 pl-4">
+                            {balanceSheetData.equity.map((item, index) => (
+                              <div
+                                key={index}
+                                className="flex justify-between text-sm py-1 hover:bg-white/[0.02] px-2 rounded"
+                              >
+                                <span className="text-white/70">{item.name}</span>
+                                <span className="text-white">{formatCurrency(item.amount)}</span>
+                              </div>
+                            ))}
+
+                            <div className="flex justify-between text-base font-bold border-t-2 border-white/20 pt-3 mt-3 bg-white/[0.02] px-2 py-2 rounded">
+                              <span className="text-white">TOTAL EQUITY</span>
+                              <span className="text-white">{formatCurrency(totalEquity)}</span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Bottom Line */}
+                      <div className="flex justify-between text-lg font-bold border-t-2 border-[#7FFF7F]/30 pt-4 mt-4 bg-[#7FFF7F]/5 px-3 py-3 rounded-lg">
+                        <span className="text-white">TOTAL LIABILITIES + EQUITY</span>
+                        <span className="text-white">{formatCurrency(totalLiabilities + totalEquity)}</span>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
               )}
 
-              {/* Income Statement Tab */}
               {activeTab === "income-statement" && (
-                <Card className="border-0 shadow-md">
-                  <CardHeader>
-                    <CardTitle className="text-xl">Income Statement</CardTitle>
-                    <p className="text-sm text-muted-foreground">For the period ending December 31, 2024</p>
+                <Card className="bg-white/[0.03] border border-white/10 rounded-2xl shadow-none">
+                  <CardHeader className="border-b border-white/10">
+                    <CardTitle className="text-white">Income Statement</CardTitle>
+                    <p className="text-sm text-white/50 mt-1">Period Comparison</p>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="p-6">
                     <div className="overflow-x-auto">
-                      <table className="w-full">
-                        <thead className="border-b-2 border-slate-300">
-                          <tr>
-                            <th className="text-left py-3 px-4 font-semibold text-slate-900"></th>
-                            <th className="text-right py-3 px-6 font-semibold text-slate-700 min-w-32">This Month</th>
-                            <th className="text-right py-3 px-6 font-semibold text-slate-700 min-w-32">Last Month</th>
-                            <th className="text-right py-3 px-6 font-semibold text-slate-700 min-w-32">YoY</th>
+                      <table className="w-full font-mono">
+                        <thead>
+                          <tr className="border-b-2 border-white/20">
+                            <th className="text-left py-3 px-2 text-sm font-semibold text-white">Account</th>
+                            <th className="text-right py-3 px-4 text-sm font-semibold text-white min-w-32">
+                              This Month
+                            </th>
+                            <th className="text-right py-3 px-4 text-sm font-semibold text-white min-w-32">
+                              Last Month
+                            </th>
+                            <th className="text-right py-3 px-4 text-sm font-semibold text-white min-w-32">YoY</th>
                           </tr>
                         </thead>
                         <tbody>
-                          {/* Revenue Section */}
-                          <tr className="bg-slate-50">
-                            <td className="py-3 px-4 font-bold text-slate-900" colSpan={4}>
+                          {/* Revenue */}
+                          <tr className="border-t border-white/10">
+                            <td className="py-3 px-2 font-bold text-white" colSpan={4}>
                               REVENUE
                             </td>
                           </tr>
-                          <tr className="border-b border-slate-100 hover:bg-slate-50/50">
-                            <td className="py-2 px-4 pl-8 text-slate-600">Amazon</td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                          <tr className="hover:bg-white/[0.02]">
+                            <td className="py-2 px-2 pl-6 text-sm text-white/70">Amazon</td>
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.thisMonth.revenue.amazon)}
                             </td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.lastMonth.revenue.amazon)}
                             </td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.yoy.revenue.amazon)}
                             </td>
                           </tr>
-                          <tr className="border-b border-slate-100 hover:bg-slate-50/50">
-                            <td className="py-2 px-4 pl-8 text-slate-600">Shopify</td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                          <tr className="hover:bg-white/[0.02]">
+                            <td className="py-2 px-2 pl-6 text-sm text-white/70">Shopify</td>
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.thisMonth.revenue.shopify)}
                             </td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.lastMonth.revenue.shopify)}
                             </td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.yoy.revenue.shopify)}
                             </td>
                           </tr>
-                          <tr className="border-b border-slate-100 hover:bg-slate-50/50">
-                            <td className="py-2 px-4 pl-8 text-slate-600">Wholesale</td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                          <tr className="hover:bg-white/[0.02]">
+                            <td className="py-2 px-2 pl-6 text-sm text-white/70">Wholesale</td>
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.thisMonth.revenue.wholesale)}
                             </td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.lastMonth.revenue.wholesale)}
                             </td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.yoy.revenue.wholesale)}
                             </td>
                           </tr>
-                          <tr className="border-b-2 border-slate-300 font-semibold bg-slate-50">
-                            <td className="py-3 px-4 pl-8 text-slate-900">Total Revenue</td>
-                            <td className="py-3 px-6 text-right font-mono tabular-nums text-slate-900">
+                          <tr className="border-t border-white/10 bg-white/[0.02]">
+                            <td className="py-2 px-2 pl-6 text-sm font-semibold text-white/90">Total Revenue</td>
+                            <td className="py-2 px-4 text-sm text-right font-semibold text-white">
                               {formatCurrency(thisMonthCalc.totalRevenue)}
                             </td>
-                            <td className="py-3 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right font-semibold text-white">
                               {formatCurrency(lastMonthCalc.totalRevenue)}
                             </td>
-                            <td className="py-3 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right font-semibold text-white">
                               {formatCurrency(yoyCalc.totalRevenue)}
                             </td>
                           </tr>
 
                           {/* COGS */}
-                          <tr className="border-b border-slate-100 hover:bg-slate-50/50">
-                            <td className="py-3 px-4 font-semibold text-slate-900">Cost of Goods Sold</td>
-                            <td className="py-3 px-6 text-right font-mono tabular-nums text-slate-900">
+                          <tr className="border-t border-white/10">
+                            <td className="py-3 px-2 font-bold text-white" colSpan={4}>
+                              COST OF GOODS SOLD
+                            </td>
+                          </tr>
+                          <tr className="hover:bg-white/[0.02]">
+                            <td className="py-2 px-2 pl-6 text-sm text-white/70">Cost of Goods Sold</td>
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.thisMonth.cogs)}
                             </td>
-                            <td className="py-3 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.lastMonth.cogs)}
                             </td>
-                            <td className="py-3 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.yoy.cogs)}
                             </td>
                           </tr>
 
                           {/* Gross Profit */}
-                          <tr className="border-b-2 border-slate-300 font-bold bg-blue-50">
-                            <td className="py-3 px-4 text-slate-900">GROSS PROFIT</td>
-                            <td className="py-3 px-6 text-right font-mono tabular-nums text-slate-900">
+                          <tr className="border-t-2 border-white/20 bg-[#7FFF7F]/5">
+                            <td className="py-3 px-2 pl-6 text-base font-bold text-white">Gross Profit</td>
+                            <td className="py-3 px-4 text-base text-right font-bold text-white">
                               {formatCurrency(thisMonthCalc.grossProfit)}
                             </td>
-                            <td className="py-3 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-3 px-4 text-base text-right font-bold text-white">
                               {formatCurrency(lastMonthCalc.grossProfit)}
                             </td>
-                            <td className="py-3 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-3 px-4 text-base text-right font-bold text-white">
                               {formatCurrency(yoyCalc.grossProfit)}
                             </td>
                           </tr>
 
                           {/* Operating Expenses */}
-                          <tr className="bg-slate-50">
-                            <td className="py-3 px-4 font-bold text-slate-900" colSpan={4}>
+                          <tr className="border-t border-white/10">
+                            <td className="py-3 px-2 font-bold text-white" colSpan={4}>
                               OPERATING EXPENSES
                             </td>
                           </tr>
-                          <tr className="border-b border-slate-100 hover:bg-slate-50/50">
-                            <td className="py-2 px-4 pl-8 text-slate-600">Marketing</td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                          <tr className="hover:bg-white/[0.02]">
+                            <td className="py-2 px-2 pl-6 text-sm text-white/70">Marketing</td>
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.thisMonth.operatingExpenses.marketing)}
                             </td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.lastMonth.operatingExpenses.marketing)}
                             </td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.yoy.operatingExpenses.marketing)}
                             </td>
                           </tr>
-                          <tr className="border-b border-slate-100 hover:bg-slate-50/50">
-                            <td className="py-2 px-4 pl-8 text-slate-600">Salaries</td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                          <tr className="hover:bg-white/[0.02]">
+                            <td className="py-2 px-2 pl-6 text-sm text-white/70">Salaries</td>
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.thisMonth.operatingExpenses.salaries)}
                             </td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.lastMonth.operatingExpenses.salaries)}
                             </td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.yoy.operatingExpenses.salaries)}
                             </td>
                           </tr>
-                          <tr className="border-b border-slate-100 hover:bg-slate-50/50">
-                            <td className="py-2 px-4 pl-8 text-slate-600">Rent</td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                          <tr className="hover:bg-white/[0.02]">
+                            <td className="py-2 px-2 pl-6 text-sm text-white/70">Rent</td>
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.thisMonth.operatingExpenses.rent)}
                             </td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.lastMonth.operatingExpenses.rent)}
                             </td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.yoy.operatingExpenses.rent)}
                             </td>
                           </tr>
-                          <tr className="border-b border-slate-100 hover:bg-slate-50/50">
-                            <td className="py-2 px-4 pl-8 text-slate-600">Utilities</td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                          <tr className="hover:bg-white/[0.02]">
+                            <td className="py-2 px-2 pl-6 text-sm text-white/70">Utilities</td>
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.thisMonth.operatingExpenses.utilities)}
                             </td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.lastMonth.operatingExpenses.utilities)}
                             </td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.yoy.operatingExpenses.utilities)}
                             </td>
                           </tr>
-                          <tr className="border-b border-slate-100 hover:bg-slate-50/50">
-                            <td className="py-2 px-4 pl-8 text-slate-600">Other</td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                          <tr className="hover:bg-white/[0.02]">
+                            <td className="py-2 px-2 pl-6 text-sm text-white/70">Other</td>
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.thisMonth.operatingExpenses.other)}
                             </td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.lastMonth.operatingExpenses.other)}
                             </td>
-                            <td className="py-2 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right text-white">
                               {formatCurrency(incomeStatementData.yoy.operatingExpenses.other)}
                             </td>
                           </tr>
-                          <tr className="border-b-2 border-slate-300 font-semibold bg-slate-50">
-                            <td className="py-3 px-4 pl-8 text-slate-900">Total Operating Expenses</td>
-                            <td className="py-3 px-6 text-right font-mono tabular-nums text-slate-900">
+                          <tr className="border-t border-white/10 bg-white/[0.02]">
+                            <td className="py-2 px-2 pl-6 text-sm font-semibold text-white/90">
+                              Total Operating Expenses
+                            </td>
+                            <td className="py-2 px-4 text-sm text-right font-semibold text-white">
                               {formatCurrency(thisMonthCalc.totalOpEx)}
                             </td>
-                            <td className="py-3 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right font-semibold text-white">
                               {formatCurrency(lastMonthCalc.totalOpEx)}
                             </td>
-                            <td className="py-3 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-2 px-4 text-sm text-right font-semibold text-white">
                               {formatCurrency(yoyCalc.totalOpEx)}
                             </td>
                           </tr>
 
                           {/* Net Income */}
-                          <tr className="border-b-2 border-slate-300 font-bold text-lg bg-green-50">
-                            <td className="py-4 px-4 text-slate-900">NET INCOME</td>
-                            <td className="py-4 px-6 text-right font-mono tabular-nums text-slate-900">
+                          <tr className="border-t-2 border-[#7FFF7F]/30 bg-[#7FFF7F]/10">
+                            <td className="py-4 px-2 pl-6 text-lg font-bold text-white">Net Income</td>
+                            <td className="py-4 px-4 text-lg text-right font-bold text-white">
                               {formatCurrency(thisMonthCalc.netIncome)}
                             </td>
-                            <td className="py-4 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-4 px-4 text-lg text-right font-bold text-white">
                               {formatCurrency(lastMonthCalc.netIncome)}
                             </td>
-                            <td className="py-4 px-6 text-right font-mono tabular-nums text-slate-900">
+                            <td className="py-4 px-4 text-lg text-right font-bold text-white">
                               {formatCurrency(yoyCalc.netIncome)}
                             </td>
                           </tr>
@@ -1288,8 +1246,11 @@ export default function DashboardPage() {
                       <div key={data.month} className="flex-1 flex flex-col items-center gap-3">
                         <div className="relative w-full flex items-end justify-center" style={{ height: "280px" }}>
                           <div
-                            className="w-full bg-gradient-to-t from-blue-600 to-blue-500 rounded-t-lg shadow-lg hover:from-blue-700 hover:to-blue-600 transition-all duration-300 hover:scale-105 cursor-pointer group"
-                            style={{ height: `${(data.sales / maxSales) * 100}%` }}
+                            className="w-full rounded-t-lg shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer group"
+                            style={{
+                              height: `${(data.sales / maxSales) * 100}%`,
+                              background: "linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%)",
+                            }}
                           >
                             <div className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                               <div className="bg-slate-900 text-white text-xs font-semibold px-2 py-1 rounded shadow-lg whitespace-nowrap">
@@ -1310,10 +1271,10 @@ export default function DashboardPage() {
           {activePage === "Settings" && (
             <div className="max-w-7xl mx-auto space-y-8">
               {/* Team Section */}
-              <Card className="border-0 shadow-md">
+              <Card className="border border-white/10 shadow-xl bg-white/[0.03] backdrop-blur-sm">
                 <CardHeader className="flex flex-row items-center justify-between">
-                  <CardTitle className="text-xl">Team</CardTitle>
-                  <Button className="bg-blue-600 hover:bg-blue-700 shadow-sm">
+                  <CardTitle className="text-xl text-white">Team</CardTitle>
+                  <Button className="bg-gradient-to-r from-[#7FFF7F] to-[#00CED1] hover:opacity-90 text-slate-900 font-semibold shadow-lg shadow-emerald-500/20">
                     <Plus className="w-4 h-4 mr-2" />
                     Add User
                   </Button>
@@ -1321,34 +1282,28 @@ export default function DashboardPage() {
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">
                     <table className="w-full">
-                      <thead className="bg-slate-50 border-y border-slate-200">
+                      <thead className="bg-white/[0.05] border-y border-white/10">
                         <tr>
-                          <th className="text-left py-3 px-6 text-sm font-semibold text-slate-700">Name</th>
-                          <th className="text-left py-3 px-6 text-sm font-semibold text-slate-700">Email</th>
-                          <th className="text-left py-3 px-6 text-sm font-semibold text-slate-700">Role</th>
-                          <th className="text-left py-3 px-6 text-sm font-semibold text-slate-700">Phone</th>
-                          <th className="text-left py-3 px-6 text-sm font-semibold text-slate-700">Primary Contact</th>
+                          <th className="text-left py-3 px-6 text-sm font-semibold text-white/60">Name</th>
+                          <th className="text-left py-3 px-6 text-sm font-semibold text-white/60">Email</th>
+                          <th className="text-left py-3 px-6 text-sm font-semibold text-white/60">Role</th>
+                          <th className="text-left py-3 px-6 text-sm font-semibold text-white/60">Phone</th>
+                          <th className="text-left py-3 px-6 text-sm font-semibold text-white/60">Primary Contact</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-100">
+                      <tbody className="divide-y divide-white/10">
                         {teamMembers.map((member) => (
-                          <tr key={member.email} className="hover:bg-slate-50/50 transition-colors">
-                            <td className="py-4 px-6 text-sm font-medium text-slate-900">{member.name}</td>
-                            <td className="py-4 px-6 text-sm text-slate-600">{member.email}</td>
-                            <td className="py-4 px-6 text-sm text-slate-600">
-                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
+                          <tr key={member.email} className="hover:bg-white/[0.05] transition-colors">
+                            <td className="py-4 px-6 text-sm font-medium text-white">{member.name}</td>
+                            <td className="py-4 px-6 text-sm text-white/70">{member.email}</td>
+                            <td className="py-4 px-6 text-sm">
+                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#7FFF7F]/10 text-[#7FFF7F] border border-[#7FFF7F]/20">
                                 {member.role}
                               </span>
                             </td>
-                            <td className="py-4 px-6 text-sm text-slate-600">{member.phone}</td>
+                            <td className="py-4 px-6 text-sm text-white/70">{member.phone}</td>
                             <td className="py-4 px-6">
-                              {member.isPrimary ? (
-                                <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                              ) : (
-                                <button className="text-slate-300 hover:text-yellow-400 transition-colors">
-                                  <Star className="w-5 h-5" />
-                                </button>
-                              )}
+                              <Star className="w-5 h-5 fill-[#7FFF7F] text-[#7FFF7F]" />
                             </td>
                           </tr>
                         ))}
@@ -1359,10 +1314,10 @@ export default function DashboardPage() {
               </Card>
 
               {/* COGs Section */}
-              <Card className="border-0 shadow-md">
+              <Card className="border border-white/10 shadow-xl bg-white/[0.03] backdrop-blur-sm">
                 <CardHeader className="flex flex-row items-center justify-between">
-                  <CardTitle className="text-xl">Cost of Goods (COGs)</CardTitle>
-                  <Button className="bg-blue-600 hover:bg-blue-700 shadow-sm">
+                  <CardTitle className="text-xl text-white">Cost of Goods (COGs)</CardTitle>
+                  <Button className="bg-gradient-to-r from-[#7FFF7F] to-[#00CED1] hover:opacity-90 text-slate-900 font-semibold shadow-lg shadow-emerald-500/20">
                     <Plus className="w-4 h-4 mr-2" />
                     Add SKU
                   </Button>
@@ -1370,35 +1325,35 @@ export default function DashboardPage() {
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">
                     <table className="w-full">
-                      <thead className="bg-slate-50 border-y border-slate-200">
+                      <thead className="bg-white/[0.05] border-y border-white/10">
                         <tr>
-                          <th className="text-left py-3 px-6 text-sm font-semibold text-slate-700">SKU</th>
-                          <th className="text-left py-3 px-6 text-sm font-semibold text-slate-700">Name</th>
-                          <th className="text-right py-3 px-6 text-sm font-semibold text-slate-700">Purchase Cost</th>
-                          <th className="text-right py-3 px-6 text-sm font-semibold text-slate-700">Freight</th>
-                          <th className="text-right py-3 px-6 text-sm font-semibold text-slate-700">Duty</th>
-                          <th className="text-right py-3 px-6 text-sm font-semibold text-slate-700">Total Cost</th>
-                          <th className="text-left py-3 px-6 text-sm font-semibold text-slate-700">Last Sold</th>
-                          <th className="text-left py-3 px-6 text-sm font-semibold text-slate-700">Start Date</th>
-                          <th className="text-left py-3 px-6 text-sm font-semibold text-slate-700">End Date</th>
+                          <th className="text-left py-3 px-6 text-sm font-semibold text-white/60">SKU</th>
+                          <th className="text-left py-3 px-6 text-sm font-semibold text-white/60">Name</th>
+                          <th className="text-right py-3 px-6 text-sm font-semibold text-white/60">Purchase Cost</th>
+                          <th className="text-right py-3 px-6 text-sm font-semibold text-white/60">Freight</th>
+                          <th className="text-right py-3 px-6 text-sm font-semibold text-white/60">Duty</th>
+                          <th className="text-right py-3 px-6 text-sm font-semibold text-white/60">Total Cost</th>
+                          <th className="text-left py-3 px-6 text-sm font-semibold text-white/60">Last Sold</th>
+                          <th className="text-left py-3 px-6 text-sm font-semibold text-white/60">Start Date</th>
+                          <th className="text-left py-3 px-6 text-sm font-semibold text-white/60">End Date</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-100">
+                      <tbody className="divide-y divide-white/10">
                         {cogsData.map((item) => (
-                          <tr key={item.sku} className="hover:bg-slate-50/50 transition-colors">
-                            <td className="py-4 px-6 text-sm font-mono font-medium text-slate-900">{item.sku}</td>
-                            <td className="py-4 px-6 text-sm text-slate-900">{item.name}</td>
-                            <td className="py-4 px-6 text-sm text-right text-slate-600">
+                          <tr key={item.sku} className="hover:bg-white/[0.05] transition-colors">
+                            <td className="py-4 px-6 text-sm font-mono font-medium text-white">{item.sku}</td>
+                            <td className="py-4 px-6 text-sm text-white">{item.name}</td>
+                            <td className="py-4 px-6 text-sm text-right text-white/70">
                               ${item.purchaseCost.toFixed(2)}
                             </td>
-                            <td className="py-4 px-6 text-sm text-right text-slate-600">${item.freight.toFixed(2)}</td>
-                            <td className="py-4 px-6 text-sm text-right text-slate-600">${item.duty.toFixed(2)}</td>
-                            <td className="py-4 px-6 text-sm text-right font-semibold text-slate-900">
+                            <td className="py-4 px-6 text-sm text-right text-white/70">${item.freight.toFixed(2)}</td>
+                            <td className="py-4 px-6 text-sm text-right text-white/70">${item.duty.toFixed(2)}</td>
+                            <td className="py-4 px-6 text-sm text-right font-semibold text-white">
                               ${item.totalCost.toFixed(2)}
                             </td>
-                            <td className="py-4 px-6 text-sm text-slate-600">{item.lastSold}</td>
-                            <td className="py-4 px-6 text-sm text-slate-600">{item.startDate}</td>
-                            <td className="py-4 px-6 text-sm text-slate-600">{item.endDate}</td>
+                            <td className="py-4 px-6 text-sm text-white/70">{item.lastSold}</td>
+                            <td className="py-4 px-6 text-sm text-white/70">{item.startDate}</td>
+                            <td className="py-4 px-6 text-sm text-white/70">{item.endDate}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -1408,26 +1363,28 @@ export default function DashboardPage() {
               </Card>
 
               {/* Integrations Section */}
-              <Card className="border-0 shadow-md">
+              <Card className="border border-white/10 shadow-xl bg-white/[0.03] backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="text-xl">Integrations</CardTitle>
+                  <CardTitle className="text-xl text-white">Integrations</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {integrations.map((integration) => (
                     <div
                       key={integration.name}
-                      className="flex items-center justify-between p-4 border border-slate-200 rounded-lg hover:border-slate-300 hover:shadow-sm transition-all"
+                      className="flex items-center justify-between p-4 border border-white/10 rounded-lg hover:border-white/20 hover:shadow-lg hover:shadow-emerald-500/5 transition-all bg-white/[0.03]"
                     >
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-gradient-to-br from-slate-100 to-slate-200 rounded-lg flex items-center justify-center text-slate-600 font-bold text-sm shadow-sm">
+                        <div className="w-12 h-12 bg-gradient-to-br from-white/10 to-white/5 rounded-lg flex items-center justify-center text-white/70 font-bold text-sm shadow-sm border border-white/10">
                           {integration.logo}
                         </div>
                         <div>
-                          <h3 className="font-semibold text-slate-900">{integration.name}</h3>
+                          <h3 className="font-semibold text-white">{integration.name}</h3>
                           {integration.connected && (
                             <div className="flex items-center gap-1.5 mt-1">
-                              <CheckCircle2 className="w-4 h-4 text-green-600" />
-                              <span className="text-sm text-green-600">Connected</span>
+                              <CheckCircle2 className="w-4 h-4 text-[#7FFF7F]" />
+                              <span className="text-sm text-[#7FFF7F] bg-[#7FFF7F]/10 px-2 py-0.5 rounded-full">
+                                Connected
+                              </span>
                             </div>
                           )}
                         </div>
@@ -1435,169 +1392,216 @@ export default function DashboardPage() {
                       {integration.connected ? (
                         <Button
                           variant="outline"
-                          className="text-red-600 hover:text-red-700 hover:bg-red-50 bg-transparent"
+                          className="text-red-400 hover:text-red-300 hover:bg-red-500/10 bg-transparent border-red-500/30 hover:border-red-500/50"
                         >
                           Disconnect
                         </Button>
                       ) : (
-                        <Button className="bg-blue-600 hover:bg-blue-700">Connect</Button>
+                        <Button className="bg-gradient-to-r from-[#7FFF7F] to-[#00CED1] hover:opacity-90 text-slate-900 font-semibold shadow-lg shadow-emerald-500/20">
+                          Connect
+                        </Button>
                       )}
                     </div>
                   ))}
+                </CardContent>
+              </Card>
+
+              {/* Billing Section */}
+              <Card className="border border-white/10 shadow-xl bg-white/[0.03] backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-xl text-white">Billing</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  {/* Current Plan */}
+                  <div className="flex items-start justify-between p-5 border border-white/10 rounded-lg bg-white/[0.03]">
+                    <div className="space-y-3 flex-1">
+                      <div>
+                        <h3 className="font-semibold text-white text-lg">Done For You</h3>
+                        <p className="text-3xl font-bold text-white mt-1">
+                          $9,500<span className="text-lg text-white/50 font-normal">/month</span>
+                        </p>
+                      </div>
+                      <div className="space-y-1.5">
+                        <div className="flex items-center gap-2 text-sm">
+                          <span className="text-white/50">Next billing date:</span>
+                          <span className="text-white">January 15, 2025</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm">
+                          <span className="text-white/50">Payment method:</span>
+                          <span className="text-white">Visa ending in 4242</span>
+                        </div>
+                      </div>
+                    </div>
+                    <Button
+                      variant="outline"
+                      className="bg-transparent border-white/20 text-white hover:bg-white/5 hover:border-white/30"
+                    >
+                      Update Payment Method
+                    </Button>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex items-center gap-4 pt-2">
+                    <Button variant="link" className="text-[#7FFF7F] hover:text-[#7FFF7F]/80 p-0 h-auto font-medium">
+                      View Invoices →
+                    </Button>
+                    <Button variant="link" className="text-[#7FFF7F] hover:text-[#7FFF7F]/80 p-0 h-auto font-medium">
+                      Change Plan →
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             </div>
           )}
 
           {activePage === "Support" && (
-            <div className="max-w-7xl mx-auto space-y-6">
-              {/* Main Chat Area */}
+            <div className="space-y-6">
+              {/* Two Column Layout */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {/* Chat Interface - Left Side (65%) */}
-                <Card className="lg:col-span-2 border-0 shadow-md flex flex-col h-[600px]">
-                  {/* Chat Header */}
-                  <CardHeader className="border-b border-slate-200 bg-white">
-                    <div className="flex items-center gap-3">
-                      <div className="relative">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-semibold shadow-md">
-                          JM
+                {/* Left Column - Chat Interface (65%) */}
+                <div className="lg:col-span-2">
+                  <Card className="bg-white/[0.02] backdrop-blur-sm border border-white/10 shadow-xl h-[600px] flex flex-col">
+                    {/* Chat Header */}
+                    <div className="border-b border-white/10 p-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#7FFF7F] to-[#00CED1] flex items-center justify-center text-sm font-bold text-[#0a0e1a]">
+                            JM
+                          </div>
+                          <div>
+                            <h3 className="text-base font-semibold text-white">Your Account Manager</h3>
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm text-white/70">Joel MacPherson</span>
+                              <div className="flex items-center gap-1">
+                                <div className="w-2 h-2 rounded-full bg-[#7FFF7F]"></div>
+                                <span className="text-xs text-[#7FFF7F]">Online</span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-slate-900">Your Account Manager: Joel MacPherson</h3>
-                        <p className="text-sm text-green-600 flex items-center gap-1">
-                          <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                          Online
-                        </p>
                       </div>
                     </div>
-                  </CardHeader>
 
-                  {/* Message History */}
-                  <CardContent className="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50">
-                    {chatMessages.map((msg) => (
-                      <div key={msg.id} className={cn("flex", msg.isAccountManager ? "justify-start" : "justify-end")}>
+                    {/* Chat Messages */}
+                    <CardContent className="flex-1 overflow-y-auto p-4 space-y-4">
+                      {chatMessages.map((msg) => (
                         <div
-                          className={cn(
-                            "max-w-[75%] rounded-2xl px-4 py-3 shadow-sm",
-                            msg.isAccountManager
-                              ? "bg-white border border-slate-200 text-slate-900"
-                              : "bg-blue-600 text-white",
-                          )}
+                          key={msg.id}
+                          className={cn("flex", msg.isAccountManager ? "justify-start" : "justify-end")}
                         >
-                          {msg.isAccountManager && (
-                            <p className="text-xs font-semibold text-blue-600 mb-1">{msg.sender}</p>
-                          )}
-                          <p className="text-sm leading-relaxed">{msg.message}</p>
-                          <p className={cn("text-xs mt-1", msg.isAccountManager ? "text-slate-500" : "text-blue-100")}>
-                            {msg.timestamp}
-                          </p>
+                          <div
+                            className={cn(
+                              "max-w-[75%] rounded-2xl px-4 py-3",
+                              msg.isAccountManager
+                                ? "bg-white/[0.05] border border-white/10"
+                                : "bg-gradient-to-r from-[#7FFF7F] to-[#00CED1]",
+                            )}
+                          >
+                            <p
+                              className={cn(
+                                "text-sm",
+                                msg.isAccountManager ? "text-white/90" : "text-[#0a0e1a] font-medium",
+                              )}
+                            >
+                              {msg.message}
+                            </p>
+                            <p
+                              className={cn(
+                                "text-xs mt-1",
+                                msg.isAccountManager ? "text-white/50" : "text-[#0a0e1a]/70",
+                              )}
+                            >
+                              {msg.timestamp}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    ))}
-                  </CardContent>
+                      ))}
+                    </CardContent>
 
-                  {/* Input Box */}
-                  <div className="p-4 border-t border-slate-200 bg-white">
-                    <div className="flex gap-3">
-                      <input
-                        type="text"
-                        placeholder="Type a message..."
-                        value={messageInput}
-                        onChange={(e) => setMessageInput(e.target.value)}
-                        className="flex-1 px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-slate-50"
-                      />
-                      <Button className="bg-blue-600 hover:bg-blue-700 px-6 shadow-sm">
-                        <Send className="w-4 h-4" />
-                      </Button>
-                    </div>
-                    <div className="mt-3 flex justify-between items-center">
-                      <Button variant="outline" className="gap-2 text-sm bg-transparent">
-                        <Phone className="w-4 h-4" />
+                    {/* Message Input */}
+                    <div className="border-t border-white/10 p-4 space-y-3">
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          placeholder="Type a message..."
+                          className="flex-1 bg-white/[0.05] border border-white/10 rounded-lg px-4 py-2 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-[#7FFF7F]/50"
+                        />
+                        <Button className="bg-gradient-to-r from-[#7FFF7F] to-[#00CED1] text-[#0a0e1a] hover:opacity-90 font-semibold">
+                          <Send className="w-4 h-4" />
+                        </Button>
+                      </div>
+                      <Button
+                        variant="outline"
+                        className="w-full border-white/10 text-white/70 hover:bg-white/[0.05] hover:text-white bg-transparent"
+                      >
+                        <Phone className="w-4 h-4 mr-2" />
                         Start Huddle
                       </Button>
                     </div>
-                  </div>
-                </Card>
+                  </Card>
+                </div>
 
-                {/* Contact Card - Right Side (35%) */}
-                <Card className="border-0 shadow-md">
-                  <CardContent className="p-6 space-y-6">
-                    {/* Account Manager Photo & Info */}
-                    <div className="text-center space-y-4">
-                      <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white text-3xl font-semibold shadow-lg">
-                        JM
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-lg text-slate-900">Joel MacPherson</h3>
-                        <p className="text-sm text-slate-600">Financial Controller</p>
-                      </div>
-                    </div>
-
-                    {/* Contact Details */}
-                    <div className="space-y-3 pt-4 border-t border-slate-200">
-                      <div className="flex items-center gap-3 text-sm">
-                        <Phone className="w-4 h-4 text-slate-400" />
-                        <span className="text-slate-700 font-medium">+1 (555) 234-5678</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-sm">
-                        <Mail className="w-4 h-4 text-slate-400" />
-                        <span className="text-slate-700">joel@zero2one.com</span>
-                      </div>
-                    </div>
-
-                    {/* Schedule Button */}
-                    <Button className="w-full bg-blue-600 hover:bg-blue-700 shadow-sm gap-2">
-                      <Calendar className="w-4 h-4" />
-                      Schedule a Call
-                    </Button>
-
-                    {/* Response Time Note */}
-                    <div className="bg-blue-50 border border-blue-100 rounded-lg p-4">
-                      <div className="flex items-start gap-3">
-                        <Clock className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                {/* Right Column - Contact Card (35%) */}
+                <div className="lg:col-span-1">
+                  <Card className="bg-white/[0.02] backdrop-blur-sm border border-white/10 shadow-xl">
+                    <CardContent className="p-6 space-y-6">
+                      {/* Avatar and Name */}
+                      <div className="text-center space-y-3">
+                        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#7FFF7F] to-[#00CED1] flex items-center justify-center text-2xl font-bold text-[#0a0e1a] mx-auto">
+                          JM
+                        </div>
                         <div>
-                          <p className="text-sm font-medium text-blue-900">Quick Response</p>
-                          <p className="text-xs text-blue-700 mt-1">Usually responds within 10 minutes</p>
+                          <h3 className="text-lg font-bold text-white">Joel MacPherson</h3>
+                          <p className="text-sm text-white/60">Financial Controller</p>
                         </div>
                       </div>
-                    </div>
 
-                    {/* Additional Info */}
-                    <div className="pt-4 border-t border-slate-200 space-y-2">
-                      <p className="text-xs text-slate-500 text-center">
-                        Joel has been your dedicated account manager since Jan 2024
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
+                      {/* Contact Info */}
+                      <div className="space-y-3 pt-4 border-t border-white/10">
+                        <div className="flex items-center gap-3 text-sm">
+                          <Phone className="w-4 h-4 text-white/50" />
+                          <span className="text-white/80">(555) 123-4567</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-sm">
+                          <Mail className="w-4 h-4 text-white/50" />
+                          <span className="text-white/80">joel@zero2one.finance</span>
+                        </div>
+                      </div>
+
+                      {/* Schedule Call Button */}
+                      <Button className="w-full bg-gradient-to-r from-[#7FFF7F] to-[#00CED1] text-[#0a0e1a] hover:opacity-90 font-semibold">
+                        <Calendar className="w-4 h-4 mr-2" />
+                        Schedule a Call
+                      </Button>
+
+                      {/* Response Time Note */}
+                      <div className="bg-[#7FFF7F]/10 border border-[#7FFF7F]/20 rounded-lg p-3">
+                        <p className="text-xs text-white/70 text-center">
+                          <span className="text-[#7FFF7F] font-semibold">Response time:</span> Usually within 10 minutes
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
 
               {/* Recent Conversations */}
-              <Card className="border-0 shadow-md">
+              <Card className="bg-white/[0.02] backdrop-blur-sm border border-white/10 shadow-xl">
                 <CardHeader>
-                  <CardTitle className="text-lg">Recent Conversations</CardTitle>
+                  <CardTitle className="text-white">Recent Conversations</CardTitle>
                 </CardHeader>
-                <CardContent className="p-0">
-                  <div className="divide-y divide-slate-100">
-                    {recentConversations.map((convo) => (
+                <CardContent>
+                  <div className="space-y-3">
+                    {recentConversations.map((conversation) => (
                       <button
-                        key={convo.id}
-                        className="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition-colors text-left"
+                        key={conversation.id}
+                        className="w-full flex items-center justify-between p-4 rounded-lg bg-white/[0.02] border border-white/10 hover:bg-white/[0.05] transition-colors text-left"
                       >
-                        <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center">
-                            <MessageSquare className="w-5 h-5 text-slate-600" />
-                          </div>
-                          <div>
-                            <h4 className="font-medium text-slate-900 text-sm">{convo.title}</h4>
-                            <p className="text-xs text-slate-500 mt-0.5">{convo.lastMessage}</p>
-                          </div>
+                        <div className="flex-1">
+                          <h4 className="text-sm font-semibold text-white mb-1">{conversation.title}</h4>
+                          <p className="text-xs text-white/50">{conversation.lastMessage}</p>
                         </div>
-                        <div className="text-right">
-                          <p className="text-xs text-slate-500">{convo.date}</p>
-                        </div>
+                        <div className="text-xs text-white/40 ml-4">{conversation.date}</div>
                       </button>
                     ))}
                   </div>
@@ -1605,20 +1609,6 @@ export default function DashboardPage() {
               </Card>
             </div>
           )}
-
-          {activePage !== "Overview" &&
-            activePage !== "Settings" &&
-            activePage !== "Accounting" &&
-            activePage !== "Finance" &&
-            activePage !== "Support" && (
-              <div className="max-w-7xl mx-auto">
-                <Card className="border-0 shadow-md">
-                  <CardContent className="p-12 text-center">
-                    <p className="text-muted-foreground">Dashboard content goes here</p>
-                  </CardContent>
-                </Card>
-              </div>
-            )}
         </div>
       </main>
     </div>
